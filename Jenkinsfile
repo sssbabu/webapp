@@ -26,11 +26,30 @@ pipeline{
        stage("package"){
 	    steps{
 		 sh 'mvn package'
+                 sh "mv target/*.war target/myweb.war"
+
 		}
 		}
       stage("deploy"){
 	    steps{
-		 sh 'mvn deploy'
+		 sshagent(['myjenkins']) {
+            
+
+                  sh """
+                 
+            scp -o StrictHostKeyChecking=no target/myweb.war ec2-user@15.206.149.50:/home/ec2-user/tomcat8/webapps/
+
+              ssh ec2-user@15.206.149.50 /home/ec2-user/tomcat8/bin/shutdown.sh
+               ssh ec2-user@15.206.149.50 /home/ec2-user/bin/startup.sh
+             chmod -R 777 webapps temp logs work conf
+             chmod -R 777 tomcat8 
+          
+          """
+
+
+
+    // some block
+}
 		}
 		}
 	  }
