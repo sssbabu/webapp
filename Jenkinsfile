@@ -41,8 +41,7 @@ pipeline{
 
               ssh ec2-user@15.206.149.50 /home/ec2-user/tomcat8/bin/shutdown.sh
                ssh ec2-user@15.206.149.50 /home/ec2-user/tomcat8/bin/startup.sh
-             chmod -R 777 webapps temp logs work conf
-             chmod -R 777 tomcat8 
+            
           
           """
 
