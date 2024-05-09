@@ -33,7 +33,7 @@ pipeline{
    
 		  stage("nexus"){
 	    steps{
-		 nexusArtifactUploader artifacts: [[artifactId: 'idream-it-solutions', classifier: '', file: 'target/myweb.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.idream.webapp', nexusUrl: '13.233.141.181:8080/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'http://13.233.141.181:8080/nexus/content/repositories/repoR/', version: '1.0'
+		 nexusArtifactUploader artifacts: [[artifactId: 'idream-it-solutions', classifier: '', file: 'target/myweb.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.idream.webapp', nexusUrl: '13.233.141.181:8080/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'repoR', version: '1.0'
 
 		}
 		}
