@@ -30,7 +30,25 @@ pipeline{
 
 		}
 		}
-   
+   stage("deploy"){
+	   steps{
+
+      sshagent(['deployment']) {
+
+	        sh """
+                 
+            scp -o StrictHostKeyChecking=no target/myweb.war ec2-user@172.31.12.90:/home/ec2-user/tomcat8/webapps/
+
+              ssh ec2-user@172.31.12.90 /home/ec2-user/tomcat8/bin/shutdown.sh
+               ssh ec2-user@172.31.12.90 /home/ec2-user/tomcat8/bin/startup.sh
+            
+          
+          """
+
+}
+
+	   
+		}
 		  
 	  }
 	}
